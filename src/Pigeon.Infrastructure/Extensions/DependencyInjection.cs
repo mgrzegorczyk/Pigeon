@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Pigeon.Domain.Interfaces.Repositories;
+using Pigeon.Infrastructure.Repositories;
 
 namespace Pigeon.Infrastructure.Extensions;
 
@@ -9,6 +11,8 @@ public static class DependencyInjection
     {
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlServer(connectionString));
+
+        services.AddTransient<IUserRepository, UserRepository>();
 
         return services;
     }
