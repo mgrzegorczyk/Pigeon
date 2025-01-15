@@ -1,12 +1,18 @@
+using Pigeon.Application.Extensions;
 using Pigeon.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
+var connectionString = configuration.GetValue<string>("ConnectionString") ??
+                       throw new Exception("Can't get connection string from APP configuration!");
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddInfrastructure(configuration.GetValue<string>("ConnectionString") ??
-                                   throw new Exception("Can't get connection string from APP configuration!"));
+builder.Services.AddControllers();
+
+// Add layers
+builder.Services.AddInfrastructure(connectionString);
+builder.Services.AddApplication();
 
 var app = builder.Build();
 
@@ -18,7 +24,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/hello", () => "Hello from Pigeon API!")
-    .WithOpenApi();
+app.MapControllers();
 
 app.Run();
