@@ -16,20 +16,12 @@ public class AuthController : Controller
         _authService = authService;
         _logger = logger;
     }
-    
+
     [HttpPost]
     [Route(nameof(Register))]
     public async Task<IActionResult> Register(RegisterUserDto registerUserDto)
     {
-        try
-        {
-            await _authService.RegisterUser(registerUserDto);
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e.Message);
-            return BadRequest($"Internal error. Can't create user {registerUserDto.Username}");
-        }
+        await _authService.RegisterUser(registerUserDto);
 
         return Created();
     }
