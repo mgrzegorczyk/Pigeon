@@ -18,6 +18,16 @@ public class AuthController : Controller
     }
 
     [HttpPost]
+    [Route(nameof(Login))]
+    public async Task<IActionResult> Login(LoginUserDto loginUserDto)
+    {
+        var authData = await _authService.GetToken(loginUserDto.Username, loginUserDto.Password);
+
+        return Ok(authData);
+    }
+
+
+    [HttpPost]
     [Route(nameof(Register))]
     public async Task<IActionResult> Register(RegisterUserDto registerUserDto)
     {

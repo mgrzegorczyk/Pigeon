@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Pigeon.Domain\Pigeon.Domain.csproj" />
+      <ProjectReference Include="..\Pigeon.Infrastructure\Pigeon.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -11,7 +11,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
 // Add layers
-builder.Services.AddInfrastructure(connectionString);
+builder.Services.AddInfrastructure(connectionString, configuration);
 builder.Services.AddApplication();
 
 var app = builder.Build();
@@ -27,5 +27,6 @@ app.UseHttpsRedirection();
 app.MapControllers();
 
 app.UseApplication();
+app.UseInfrastructure();
 
 app.Run();

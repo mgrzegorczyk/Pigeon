@@ -8,24 +8,15 @@ public static class PasswordHasher
     private const int HashSize = 32;
     private const int Iterations = 10000;
 
-    public static (string HashedPassword, string Salt) HashPassword(string password)
+    public static (string HashedPassword, string Salt) HashPassword(string password, byte[]? salt = null)
     {
-        string salt = Convert.ToBase64String(GenerateSalt(SaltSize));
+        if (salt is null) salt = GenerateSalt(SaltSize);
 
-        using var rfc2898 = new Rfc2898DeriveBytes(password, Convert.FromBase64String(salt), Iterations,
+        using var rfc2898 = new Rfc2898DeriveBytes(password, salt, Iterations,
             HashAlgorithmName.SHA256);
         string hashedPassword = Convert.ToBase64String(rfc2898.GetBytes(HashSize));
 
-        return (hashedPassword, salt);
-    }
-
-    public static bool VerifyPassword(string password, string storedHash, string storedSalt)
-    {
-        using var rfc2898 = new Rfc2898DeriveBytes(password, Convert.FromBase64String(storedSalt), Iterations,
-            HashAlgorithmName.SHA256);
-        byte[] computedHash = rfc2898.GetBytes(HashSize);
-
-        return Convert.ToBase64String(computedHash) == storedHash;
+        return (hashedPassword, Convert.ToBase64String(salt));
     }
 
     private static byte[] GenerateSalt(int size)
