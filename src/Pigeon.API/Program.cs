@@ -1,3 +1,4 @@
+using Pigeon.API.Extensions;
 using Pigeon.Application.Extensions;
 using Pigeon.Infrastructure.Extensions;
 
@@ -7,7 +8,7 @@ var connectionString = configuration.GetValue<string>("ConnectionString") ??
                        throw new Exception("Can't get connection string from APP configuration!");
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddBearerSwagger();
 builder.Services.AddControllers();
 
 // Add layers
