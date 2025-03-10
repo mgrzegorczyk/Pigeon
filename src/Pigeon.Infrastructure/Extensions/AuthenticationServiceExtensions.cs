@@ -32,6 +32,7 @@ public static class AuthenticationServiceExtensions
                 ValidateLifetime = true,
                 ClockSkew = TimeSpan.FromSeconds(120)
             };
+            options.SaveToken = true;
         });
 
         return services;
