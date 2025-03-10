@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Pigeon.Domain;
 using Pigeon.Domain.Interfaces.Repositories;
+using Pigeon.Domain.Models;
 
 namespace Pigeon.Infrastructure.Repositories;
 

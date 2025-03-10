@@ -17,6 +17,7 @@ public static class DependencyInjection
             options.UseSqlServer(connectionString));
 
         services.AddTransient<IUserRepository, UserRepository>();
+        services.AddTransient<IChatRepository, ChatRepository>();
         services.AddAuth(connectionString, configuration);
         services.AddOptions(configuration);
 

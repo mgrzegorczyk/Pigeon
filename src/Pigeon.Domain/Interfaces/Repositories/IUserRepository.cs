@@ -1,4 +1,6 @@
-﻿namespace Pigeon.Domain.Interfaces.Repositories;
+﻿using Pigeon.Domain.Models;
+
+namespace Pigeon.Domain.Interfaces.Repositories;
 
 public interface IUserRepository
 {

@@ -11,6 +11,7 @@ public static class DependencyInjection
     {
         services.AddTransient<IAuthService, AuthService>();
         services.AddTransient<IJwtService, JwtService>();
+        services.AddTransient<IChatService, ChatService>();
 
         return services;
     }

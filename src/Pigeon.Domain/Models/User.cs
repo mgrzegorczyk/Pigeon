@@ -1,4 +1,4 @@
-﻿namespace Pigeon.Domain;
+﻿namespace Pigeon.Domain.Models;
 
 public class User
 {
@@ -16,4 +16,6 @@ public class User
     public string Password { get; set; }
     public DateTime CreatedAt { get; set; }
     public string Salt { get; set; }
+    
+    public ICollection<Message> Messages { get; set; }
 }

@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Pigeon.Application.DTOs;
-using Pigeon.Domain;
+using Pigeon.Domain.Models;
 using Pigeon.Infrastructure.Options;
 
 namespace Pigeon.Application.Services;

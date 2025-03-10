@@ -1,7 +1,7 @@
 ﻿using Pigeon.Application.DTOs;
 using Pigeon.Application.Helpers;
-using Pigeon.Domain;
 using Pigeon.Domain.Interfaces.Repositories;
+using Pigeon.Domain.Models;
 
 namespace Pigeon.Application.Services;
 
