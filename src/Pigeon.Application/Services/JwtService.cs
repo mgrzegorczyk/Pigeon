@@ -46,8 +46,8 @@ public class JwtService : IJwtService
     {
         return
         [
-            new Claim(JwtRegisteredClaimNames.Sub, user.Username),
-            new Claim(JwtRegisteredClaimNames.Jti, user.Id.ToString())
+            new Claim(JwtRegisteredClaimNames.Name, user.Username),
+            new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString())
         ];
     }
 
