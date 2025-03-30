@@ -12,6 +12,8 @@ public static class DependencyInjection
         services.AddTransient<IAuthService, AuthService>();
         services.AddTransient<IJwtService, JwtService>();
         services.AddTransient<IChatService, ChatService>();
+        services.AddSingleton<IUserConnectionService, UserConnectionService>();
+        services.AddSignalR();
 
         return services;
     }
