@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Pigeon.Application.Middlewares;
 using Pigeon.Application.Services;
+using Pigeon.Infrastructure.Producers;
 
 namespace Pigeon.Application.Extensions;
 
@@ -13,6 +14,7 @@ public static class DependencyInjection
         services.AddTransient<IJwtService, JwtService>();
         services.AddTransient<IChatService, ChatService>();
         services.AddSingleton<IUserConnectionService, UserConnectionService>();
+        services.AddTransient<IKafkaProducer, KafkaProducer>();
         services.AddSignalR();
 
         return services;

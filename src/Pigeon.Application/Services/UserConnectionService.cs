@@ -5,8 +5,8 @@ namespace Pigeon.Application.Services;
 
 public interface IUserConnectionService
 {
-    void AddConnection(string username, string connectionId);
-    void RemoveConnection(string username);
+    void AddConnection(string userId, string connectionId);
+    void RemoveConnection(string userId);
     string GetClaimValue(ClaimsPrincipal? principal, string claimType);
 }
 
@@ -14,19 +14,19 @@ public class UserConnectionService : IUserConnectionService
 {
     private readonly ConcurrentDictionary<string, string> _userConnections = new();
 
-    public void AddConnection(string username, string connectionId)
+    public void AddConnection(string userId, string connectionId)
     {
-        if (!string.IsNullOrEmpty(username))
+        if (!string.IsNullOrEmpty(userId))
         {
-            _userConnections.TryAdd(username, connectionId);
+            _userConnections.TryAdd(userId, connectionId);
         }
     }
 
-    public void RemoveConnection(string username)
+    public void RemoveConnection(string userId)
     {
-        if (!string.IsNullOrEmpty(username))
+        if (!string.IsNullOrEmpty(userId))
         {
-            _userConnections.TryRemove(username, out _);
+            _userConnections.TryRemove(userId, out _);
         }
     }
 

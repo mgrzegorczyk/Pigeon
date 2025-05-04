@@ -34,7 +34,17 @@ public static class DependencyInjection
     private static IServiceCollection AddOptions(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<JwtSettingsOptions>(configuration.GetSection(nameof(JwtSettingsOptions)));
-
+        
+        services.AddOptions<KafkaOptions>()
+            .Bind(configuration.GetSection(nameof(KafkaOptions)))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+        
+        services.AddOptions<MessageHubOptions>()
+            .Bind(configuration.GetSection(nameof(MessageHubOptions)))
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+        
         return services;
     }
 }

@@ -11,14 +11,12 @@ public static class ChatDtoExtensions
         {
             Id = chat.Id,
             CreatedAt = chat.CreatedAt,
-            Messages = chat.Messages?.Select(x => new MessageDto()
-            {
-                Id = x.Id,
-                CreatedAt = x.CreatedAt,
-                MessageText = x.MessageText,
-                ChatId = x.ChatId,
-                UserId = x.UserId,
-            }).ToHashSet(),
+            Messages = chat.Messages?.Select(x => new MessageDto(x.Id,
+                x.ChatId,
+                x.UserId,
+                x.MessageText,
+                x.CreatedAt)
+            ).ToHashSet(),
             Name = chat.Name,
         };
     }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Pigeon.Application.Requests;
 using Pigeon.Application.Services;
 using Pigeon.Domain.Exceptions;
 
@@ -18,11 +19,12 @@ public class ChatController : Controller
     }
 
     [HttpPost(nameof(GetPaginatedChat))]
-    public async Task<IActionResult> GetPaginatedChat(Guid chatId, int pageNumber, int pageSize)
+    public async Task<IActionResult> GetPaginatedChat(GetPaginatedChatRequest getPaginatedChatRequest)
     {
         try
         {
-            var paginedChat = await _chatService.GetPaginatedChat(chatId, pageNumber, pageSize);
+            var paginedChat = await _chatService.GetPaginatedChatAsync(getPaginatedChatRequest.ChatId,
+                getPaginatedChatRequest.PageNumber, getPaginatedChatRequest.PageSize);
             return Json(paginedChat);
         }
         catch (ChatNotFoundException ex)
